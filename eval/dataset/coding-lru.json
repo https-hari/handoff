@@ -1,0 +1,56 @@
+{
+  "id": "coding-lru",
+  "task": "coding",
+  "gold": {
+    "goal": "Implement an O(1) LRU cache in C++",
+    "instructions": [
+      "Use C++17 only",
+      "Do not use Boost",
+      "Use snake_case for all names",
+      "State time complexity after each function",
+      "Do not throw exceptions; return std::optional on a miss"
+    ]
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "I need an LRU cache in C++ for an interview. Rules: C++17 only, no Boost, snake_case names everywhere, and after every function tell me its time complexity. Also never throw exceptions — return std::optional on a miss."
+    },
+    {
+      "role": "assistant",
+      "content": "Here is a first version using std::map:\n```cpp\nclass lru_cache { std::map<int,int> data_; };\n```\nLet me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "std::map makes get O(log n). I want O(1)."
+    },
+    {
+      "role": "assistant",
+      "content": "Right, std::map is a balanced tree so lookups are O(log n). We'll switch to a hash map plus a list. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Ok go with std::list + std::unordered_map."
+    },
+    {
+      "role": "assistant",
+      "content": "Version 2:\n```cpp\nclass lru_cache {\n  std::list<std::pair<int,int>> items_;\n  std::unordered_map<int, std::list<std::pair<int,int>>::iterator> index_;\n};\n```\nLet me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Add get and put."
+    },
+    {
+      "role": "assistant",
+      "content": "Version 3:\n```cpp\nclass lru_cache {\npublic:\n  explicit lru_cache(std::size_t cap) : cap_(cap) {}\n  std::optional<int> get(int key);\n  void put(int key, int value);\nprivate:\n  std::size_t cap_;\n  std::list<std::pair<int,int>> items_;\n  std::unordered_map<int, std::list<std::pair<int,int>>::iterator> index_;\n};\n```\nget: O(1). put: O(1). Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Looks good. Next I want unit tests, then a thread-safe variant."
+    },
+    {
+      "role": "assistant",
+      "content": "Great. For tests we can cover hits, misses, eviction order and capacity one. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    }
+  ]
+}

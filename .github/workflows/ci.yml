@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install
+        run: pip install -r backend/requirements.txt
+      - name: Tests (no network, no keys)
+        working-directory: backend
+        run: python -m pytest -q
+      - name: Eval harness (mock)
+        run: python eval/run_eval.py --mock
+
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Syntax check
+        run: for f in extension/content/*.js extension/popup/*.js; do node --check "$f"; done
+      - name: Manifest is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('extension/manifest.json','utf8'))"
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No committed env files or keys
+        run: |
+          if git ls-files | grep -E '(^|/)\.env$|backend/data/'; then echo "env/data file committed"; exit 1; fi
+          if git grep -nE 'gsk_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}' -- . ':!*.md'; then echo "possible API key"; exit 1; fi

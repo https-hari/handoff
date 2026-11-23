@@ -1,0 +1,56 @@
+{
+  "id": "writing-sop",
+  "task": "writing",
+  "gold": {
+    "goal": "Write a Statement of Purpose for an MS in Computer Science application",
+    "instructions": [
+      "Keep it under 1000 words",
+      "Use British spelling",
+      "Do not use cliches like 'since childhood' or 'passion'",
+      "Mention the NLP research done at a university lab",
+      "Write in first person, active voice"
+    ]
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Help me write my SOP for an MS in CS. Constraints: under 1000 words, British spelling, no clichés like 'since childhood' or 'passion', it must mention my NLP research at the university lab, and first person active voice throughout."
+    },
+    {
+      "role": "assistant",
+      "content": "Understood. Let's start with an outline: opening anecdote, research experience, projects, why this programme, goals. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Opening should be about debugging a RAG pipeline at 2am, not about childhood."
+    },
+    {
+      "role": "assistant",
+      "content": "Draft opening: 'At 2 a.m., my retrieval pipeline kept returning the wrong meeting notes...' Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Good. Now the research paragraph."
+    },
+    {
+      "role": "assistant",
+      "content": "Research paragraph draft: 'At the lab, I studied how sentence embeddings behave on noisy transcripts...' Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "We decided to drop the hackathon paragraph, it's weak."
+    },
+    {
+      "role": "assistant",
+      "content": "Agreed, removing it frees about 120 words for the programme-fit section. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    },
+    {
+      "role": "user",
+      "content": "Next: the 'why this programme' paragraph, then trim the whole thing."
+    },
+    {
+      "role": "assistant",
+      "content": "For programme fit, we should name two faculty and one lab whose work overlaps with yours. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. Let me also walk through the reasoning so it is clear why this works. Each step builds on the previous one, and I have kept the explanation close to the code so you can follow it during a review. "
+    }
+  ]
+}

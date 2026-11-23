@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Handoff</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Handoff</h1>
+    <span id="site" class="muted"></span>
+  </header>
+
+  <section>
+    <h2>1. Source chat</h2>
+    <p id="captureStatus" class="muted">Nothing captured yet.</p>
+    <div class="row">
+      <button id="captureBtn">Capture this chat</button>
+      <button id="exportBtn" class="link" hidden>Export JSON</button>
+    </div>
+    <details>
+      <summary>Paste a chat instead</summary>
+      <textarea id="pasteBox" rows="6" placeholder="User: ...&#10;Assistant: ...&#10;User: ..."></textarea>
+      <button id="pasteBtn" class="secondary">Use pasted chat</button>
+    </details>
+  </section>
+
+  <section>
+    <h2>2. Build the handoff</h2>
+    <div class="row">
+      <label for="target">Continue in</label>
+      <select id="target">
+        <option value="claude">Claude</option>
+        <option value="chatgpt">ChatGPT</option>
+        <option value="gemini">Gemini</option>
+        <option value="generic">Other</option>
+      </select>
+      <button id="buildBtn" disabled>Build</button>
+    </div>
+    <div id="result" hidden>
+      <p id="stats"></p>
+      <p id="goal" class="goal"></p>
+      <div class="row">
+        <button id="insertBtn">Insert here</button>
+        <button id="copyBtn" class="secondary">Copy</button>
+        <button id="openBtn" class="secondary">Open</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Check the rules survived</h2>
+    <p class="muted">After the new assistant replies, run this on its page.</p>
+    <button id="checkBtn" disabled>Check the reply</button>
+    <div id="check" hidden>
+      <p id="checkSummary"></p>
+      <ul id="missingList"></ul>
+      <button id="copyMissingBtn" class="secondary" hidden>Copy missing rules</button>
+    </div>
+  </section>
+
+  <p id="message" role="status"></p>
+
+  <details class="settings">
+    <summary>Settings</summary>
+    <label for="backend">Backend URL</label>
+    <input id="backend" type="url" value="http://localhost:8000">
+  </details>
+
+  <script src="popup.js"></script>
+</body>
+</html>

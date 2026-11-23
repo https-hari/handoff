@@ -1,0 +1,49 @@
+# ---- secrets: never commit ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# ---- local data (chat logs, SQLite) ----
+backend/data/
+*.db
+*.sqlite3
+
+# ---- eval: keep the summary table and CSV, not raw replies or personal chats ----
+eval/results/*
+!eval/results/.gitkeep
+!eval/results/results.md
+!eval/results/results.csv
+eval/dataset/private/
+
+# ---- extension packaging ----
+*.crx
+*.zip
+
+# ---- editors / OS ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.bak
+*~
+
+# ---- local agent settings ----
+.claude/settings.local.json

@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Handoff — continue your AI chat anywhere",
+  "version": "0.1.0",
+  "description": "Move the working state of an AI chat (goal, rules, latest code) to another assistant and check the rules survived.",
+  "permissions": ["storage", "activeTab", "clipboardWrite"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "http://localhost:8000/*"
+  ],
+  "action": { "default_popup": "popup/popup.html", "default_title": "Handoff" },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://claude.ai/*", "https://gemini.google.com/*"],
+      "js": ["content/adapters.js", "content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

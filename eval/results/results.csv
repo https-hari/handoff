@@ -1,0 +1,17 @@
+id,task,method,context_tokens,retention,goal_correct,missing
+coding-lru,coding,full,1299,1.0,1,
+coding-lru,coding,tail,818,0.0,0,Use C++17 only | Do not use Boost | Use snake_case for all names | State time complexity after each function | Do not throw exceptions; return std::optional on a miss
+coding-lru,coding,summary,694,1.0,1,
+coding-lru,coding,card,517,1.0,1,
+project-api,project,full,1263,1.0,1,
+project-api,project,tail,818,0.0,0,"Use Python 3.11 | Use SQLAlchemy 2.0 style queries | Every endpoint returns a {success, data} envelope | Write a pytest test for each endpoint | Never commit secrets; read them from environment variables"
+project-api,project,summary,931,1.0,1,
+project-api,project,card,503,1.0,1,
+study-os,study,full,1044,1.0,1,
+study-os,study,tail,818,0.0,0,"Answer in bullet points | Use at most 5 bullets per answer | Use Java examples, not C | End every answer with one interview-style question for me"
+study-os,study,summary,315,1.0,0,
+study-os,study,card,304,1.0,1,
+writing-sop,writing,full,1246,1.0,1,
+writing-sop,writing,tail,818,0.0,0,"Keep it under 1000 words | Use British spelling | Do not use cliches like 'since childhood' or 'passion' | Mention the NLP research done at a university lab | Write in first person, active voice"
+writing-sop,writing,summary,538,1.0,1,
+writing-sop,writing,card,351,1.0,1,

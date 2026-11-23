@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-11-24)
+
+- Redesigned extension popup: Capture → Build → Check progress rail, a From → To route with a baton that
+  crosses when the handoff is built, and a state card that flips from the captured chat to the ready handoff
+  (goal, rule / code counts, how much smaller), with a subtle 3D tilt.
+- Rule check shows a kept/total meter and the missing rules inline.
+- Light and dark themes, keyboard focus rings, reduced-motion support.
+
 ## 0.1.0 (2026-11-24)
 
 First release.

@@ -1,21 +1,46 @@
 {
   "manifest_version": 3,
   "name": "Handoff — continue your AI chat anywhere",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Move the working state of an AI chat (goal, rules, latest code) to another assistant and check the rules survived.",
-  "permissions": ["storage", "activeTab", "clipboardWrite"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "clipboardWrite"
+  ],
   "host_permissions": [
     "https://chatgpt.com/*",
     "https://claude.ai/*",
     "https://gemini.google.com/*",
     "http://localhost:8000/*"
   ],
-  "action": { "default_popup": "popup/popup.html", "default_title": "Handoff" },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Handoff",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
   "content_scripts": [
     {
-      "matches": ["https://chatgpt.com/*", "https://claude.ai/*", "https://gemini.google.com/*"],
-      "js": ["content/adapters.js", "content/content.js"],
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": [
+        "content/adapters.js",
+        "content/content.js"
+      ],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
 }

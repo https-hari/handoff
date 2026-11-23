@@ -6,66 +6,109 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <header>
-    <h1>Handoff</h1>
-    <span id="site" class="muted"></span>
+  <header class="top">
+    <div class="brand">
+      <img class="logo" src="../icons/icon-128.png" alt="" width="22" height="22">
+      <span class="wordmark">Handoff</span>
+    </div>
+    <span id="site" class="site-pill"><span class="dot" aria-hidden="true"></span><span id="siteText">Checking page…</span></span>
   </header>
 
-  <section>
-    <h2>1. Source chat</h2>
-    <p id="captureStatus" class="muted">Nothing captured yet.</p>
-    <div class="row">
-      <button id="captureBtn">Capture this chat</button>
-      <button id="exportBtn" class="link" hidden>Export JSON</button>
-    </div>
-    <details>
-      <summary>Paste a chat instead</summary>
-      <textarea id="pasteBox" rows="6" placeholder="User: ...&#10;Assistant: ...&#10;User: ..."></textarea>
-      <button id="pasteBtn" class="secondary">Use pasted chat</button>
-    </details>
-  </section>
+  <ol class="rail" aria-label="Progress">
+    <li id="step1">Capture</li>
+    <li id="step2">Build</li>
+    <li id="step3">Check</li>
+  </ol>
 
-  <section>
-    <h2>2. Build the handoff</h2>
-    <div class="row">
-      <label for="target">Continue in</label>
-      <select id="target">
+  <!-- From → to -->
+  <div id="route" class="route" aria-label="Where the chat goes">
+    <div class="node from">
+      <span class="node-label">From</span>
+      <span id="fromName" class="node-name">—</span>
+    </div>
+    <div class="track" aria-hidden="true"><span class="baton"></span></div>
+    <div class="node to">
+      <label class="node-label" for="target">To</label>
+      <select id="target" class="node-select">
         <option value="claude">Claude</option>
         <option value="chatgpt">ChatGPT</option>
         <option value="gemini">Gemini</option>
         <option value="generic">Other</option>
       </select>
-      <button id="buildBtn" disabled>Build</button>
     </div>
-    <div id="result" hidden>
-      <p id="stats"></p>
-      <p id="goal" class="goal"></p>
-      <div class="row">
-        <button id="insertBtn">Insert here</button>
-        <button id="copyBtn" class="secondary">Copy</button>
-        <button id="openBtn" class="secondary">Open</button>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <section>
-    <h2>3. Check the rules survived</h2>
-    <p class="muted">After the new assistant replies, run this on its page.</p>
-    <button id="checkBtn" disabled>Check the reply</button>
+  <!-- The state card: front = captured chat, back = ready handoff -->
+  <div class="stage">
+    <div id="card" class="card" data-face="front">
+      <section class="face front" aria-label="Captured chat">
+        <div id="emptyState" class="face-body">
+          <p class="lead">Move this chat to another assistant without losing your rules or code.</p>
+          <ul class="carries" aria-label="What carries over">
+            <li>Goal</li><li>Rules</li><li>Latest code</li><li>What's left</li><li>What failed</li>
+          </ul>
+          <button id="captureBtn" class="primary">Capture this chat</button>
+        </div>
+        <div id="capturedState" class="face-body" hidden>
+          <div>
+            <p class="count"><span id="msgCount">0</span> messages</p>
+            <p id="captureStatus" class="sub"></p>
+          </div>
+          <div class="actions">
+            <button id="buildBtn" class="primary" disabled>Build handoff</button>
+            <button id="recaptureBtn" class="ghost">Capture again</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="face back" aria-label="Handoff ready">
+        <p class="goal-label">Goal</p>
+        <p id="goal" class="goal"></p>
+        <dl class="tiles">
+          <div><dt>Rules</dt><dd id="tRules">0</dd></div>
+          <div><dt>Code</dt><dd id="tCode">0</dd></div>
+          <div><dt>Smaller</dt><dd id="tSaved">0%</dd></div>
+        </dl>
+        <div class="actions">
+          <button id="insertBtn" class="primary">Insert here</button>
+          <button id="copyBtn" class="ghost">Copy</button>
+          <button id="openBtn" class="ghost">Open</button>
+        </div>
+        <button id="rebuildBtn" class="text">Back to captured chat</button>
+      </section>
+    </div>
+  </div>
+
+  <!-- Verification -->
+  <section id="checkPanel" class="check" hidden>
+    <div class="check-head">
+      <p class="check-title">Did the rules survive?</p>
+      <button id="checkBtn" class="ghost small" disabled>Check the reply</button>
+    </div>
+    <p id="checkHint" class="sub">Send the handoff, wait for the reply, then check it here.</p>
     <div id="check" hidden>
-      <p id="checkSummary"></p>
-      <ul id="missingList"></ul>
-      <button id="copyMissingBtn" class="secondary" hidden>Copy missing rules</button>
+      <div class="meter" aria-hidden="true"><span id="meterFill"></span></div>
+      <p id="checkSummary" class="check-summary"></p>
+      <ul id="missingList" class="missing"></ul>
+      <button id="copyMissingBtn" class="primary small" hidden>Copy missing rules</button>
     </div>
   </section>
 
-  <p id="message" role="status"></p>
+  <p id="message" class="message" role="status" aria-live="polite"></p>
 
-  <details class="settings">
-    <summary>Settings</summary>
-    <label for="backend">Backend URL</label>
-    <input id="backend" type="url" value="http://localhost:8000">
-  </details>
+  <footer class="more">
+    <details>
+      <summary>Paste a chat instead</summary>
+      <textarea id="pasteBox" rows="5" placeholder="User: …&#10;Assistant: …&#10;User: …"></textarea>
+      <button id="pasteBtn" class="ghost small">Use pasted chat</button>
+    </details>
+    <details>
+      <summary>Settings</summary>
+      <label for="backend" class="field-label">Backend URL</label>
+      <input id="backend" type="url" value="http://localhost:8000" spellcheck="false">
+      <button id="exportBtn" class="text" hidden>Export captured chat as JSON</button>
+    </details>
+  </footer>
 
   <script src="popup.js"></script>
 </body>

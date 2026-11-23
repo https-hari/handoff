@@ -1,11 +1,19 @@
-# Handoff
+<p align="center">
+  <img src="extension/icons/icon-512.png" alt="Handoff logo" width="128">
+</p>
 
-[![CI](https://github.com/https-hari/handoff/actions/workflows/ci.yml/badge.svg)](https://github.com/https-hari/handoff/actions/workflows/ci.yml)
-![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
-![Chrome MV3](https://img.shields.io/badge/chrome-MV3-green)
-[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+<h1 align="center">Handoff</h1>
 
-**Hit your usage limit halfway through a task? Continue in another AI without starting over.**
+<p align="center">
+  <b>Hit your usage limit halfway through a task? Continue in another AI without starting over.</b>
+</p>
+
+<p align="center">
+  <a href="https://github.com/https-hari/handoff/actions/workflows/ci.yml"><img src="https://github.com/https-hari/handoff/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/chrome-MV3-green" alt="Chrome MV3">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="License: MIT"></a>
+</p>
 
 Handoff moves the **working state** of an AI chat (goal, rules, decisions, latest code, what's left,
 what already failed) from ChatGPT, Claude or Gemini to another assistant. Then it **checks that the new
